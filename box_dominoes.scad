@@ -1,4 +1,5 @@
 printerMargin = 0.5;
+
 boxWallThickness = 1.5;
 coverThickness = 2;
 notchWidth = 10;
@@ -29,6 +30,7 @@ module notch() {
 }
 
 module box() {
+  bwt = boxWallThickness;
   difference(){
     minkowski(){
       translate([0.5,0.5]) cube([boxSizeDepth-1,boxSizeWidth-1,boxSizeHeight-1]);
@@ -49,7 +51,7 @@ module box() {
 
 module cover(margin=printerMargin){
   h = boxSizeWidth-boxWallThickness-margin;
-  x = boxSizeDepth-boxWallThickness*2-marginDD;
+  x = boxSizeDepth-boxWallThickness*2-margin;
   echo(x);
   translate([boxWallThickness+0,0,0]){
     difference(){
