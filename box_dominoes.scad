@@ -15,11 +15,6 @@ boxSizeDepth  =  50 + 2*boxWallThickness;
 $fn = 50;
 diffMargin = 0.01;
 
-/* Aux Functions */
-module coverCutCylinder(d,h) {
-  rotate(a=[-90,0,0])
-    cylinder(d=d, h=h);
-}
 
 module notch() {
   intersection(){
