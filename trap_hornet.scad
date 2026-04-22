@@ -233,8 +233,8 @@ module top() {
     rotate([90, 90, 0])
       difference() {
         rotate_extrude()
-          translate([9, 0, 0])
-            circle(d = 4);
+          translate([10, 0, 0])
+            circle(d = 6);
         translate([9, 0, 0])
           cube([10, 100, 10], center =true);
 }
@@ -244,5 +244,5 @@ module top() {
 
 
 //bottom();
-//side();
-top();
+side();
+//top();
