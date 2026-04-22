@@ -141,7 +141,9 @@ module screw_holder() {
 
 module bottom() {
   difference(){
-    cube([box_w, box_d, box_wallThickness]);
+    // dirty fix, need to realign screw holes
+    translate([-box_wallThickness, -box_wallThickness, 0])
+      cube([box_w+box_wallThickness*2, box_d+box_wallThickness*2, box_wallThickness]);
     translate([box_w/2, box_d/2, 0])
       cylinder(r=internalRadius+wallThickness,h=lipThickness+lipwallThickness+topThickness);
 
@@ -203,11 +205,9 @@ module side() {
 }
 module top() {
   difference() {
-    hull() {
-      cube([box_w, box_d, 1]);
-      translate([box_w/2, box_d/2, 10])
-        cylinder(d=30, h=1);
-    }
+    // dirty fix, need to realign screw holes
+    translate([-box_wallThickness, -box_wallThickness, 0])
+      cube([box_w+box_wallThickness*2, box_d+box_wallThickness*2, box_wallThickness]);
     
     translate([screw_x, screw_y, 0])
       screw_hole();
@@ -229,16 +229,20 @@ module top() {
     translate([box_w-screw_y, box_d-screw_x, 0])
       screw_hole();
   }
-  translate([box_w/2, box_d/2, 10+9/2])
+  translate([box_w/2, box_d/2, 9/2])
     rotate([90, 90, 0])
-      rotate_extrude()
+      difference() {
+        rotate_extrude()
+          translate([9, 0, 0])
+            circle(d = 4);
         translate([9, 0, 0])
-          circle(d = 4);
+          cube([10, 100, 10], center =true);
+}
     
 
 }
 
 
-bottom();
+//bottom();
 //side();
-//top();
+top();
